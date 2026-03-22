@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Navbar Blur/Shadow on Scroll ---
+    // --- Navbar Blur/Shadow on Scroll --
     window.addEventListener('scroll', () => {
         if (window.scrollY > 20) {
             navbar.classList.add('scrolled');
