@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BreathClean | Know the Air You Breathe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+    <canvas id="particleBg"></canvas>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container container">
+            <a href="#" class="logo">
+                <img src="assets/logo.png" alt="BreathClean Logo">
+                <span>BreathClean</span>
+            </a>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#sensors">Technology</a>
+                <a href="#app">App</a>
+                <a href="#insights">Insights</a>
+                <a href="#feedback">Feedback</a>
+                <a href="#contact" class="btn-primary mobile-btn">Get in Touch</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="#contact" class="btn-primary desktop-btn">Get in Touch</a>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="hero-text text-left active-on-scroll fade-left">
+                    <span class="badge glow-green">Smart Environmental Intelligence</span>
+                    <h1>Know the Air You Breathe<br><span>with MiniBreath</span></h1>
+                    <p>MiniBreath by BreathClean is a compact, high-precision environmental monitoring device that continuously analyzes invisible threats. It converts complex sensor data into actionable intelligence, delivered directly to your smartphone.</p>
+                </div>
+                <div class="hero-visual active-on-scroll fade-right device-visual">
+                    <img src="assets/device.png" alt="MiniBreath Device" class="device-float main-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gradient-light solution-stacked" id="solution">
+            <div class="container hero-grid align-center">
+                <div class="text-left active-on-scroll fade-right">
+                    <span class="badge">Our Solution</span>
+                    <h2>Meet <span>MiniBreath</span></h2>
+                    <p>MiniBreath is a portable air quality monitoring device designed to continuously analyze your surroundings. It provides a complete picture of air quality by measuring 7 critical parameters simultaneously.</p>
+                    <ul class="check-list mt-4">
+                        <li>✔️ Compact and easy to use</li>
+                        <li>✔️ Designed for continuous 24/7 monitoring</li>
+                        <li>✔️ Built for both indoor and outdoor environments</li>
+                    </ul>
+                </div>
+
+                <div class="device-visual-small text-center active-on-scroll fade-left">
+                    <img src="assets/device.png" alt="Portable MiniBreath" class="shadow-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="dark-theme glass-section" id="sensors">
+            <div class="container">
+                <div class="text-center mb-5 max-w-700 mx-auto active-on-scroll fade-up">
+                    <span class="badge dark-badge">Hardware Technology</span>
+                    <h2>4 Sensors & PCB Design</h2>
+                    <p>Precision environmental monitoring is powered by a custom circuit board with proper sensor placement and airflow design for efficient sampling, reliable wireless communication, and low power consumption.</p>
+                </div>
+
+                <div class="pcb-showcase hero-grid align-center mb-5">
+                    <div class="visual-box text-center active-on-scroll fade-left">
+                        <img src="assets/pcb.png" alt="BreathClean PCB" class="responsive-pcb glow-green-border shadow-img pcb-image">
+                    </div>
+                    <div class="pcb-details active-on-scroll fade-right text-left">
+                        <ul class="pcb-tech-list">
+                            <li><span class="dot emerald"></span> <strong>ZMOD4410AI1V</strong> – Indoor Gas (VOCs)</li>
+                            <li><span class="dot turquoise"></span> <strong>ZMOD4510AI1V</strong> – Outdoor Pollution (Ozone)</li>
+                            <li><span class="dot white"></span> <strong>HS4001</strong> – Temp & Humidity</li>
+                            <li><span class="dot purple"></span> <strong>PMSA003</strong> – Particulate Matter</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sensor-grid mt-5">
+                    <div class="sensor-card glass-card text-left active-on-scroll fade-up" style="transition-delay: 0.1s">
+                        <span class="model-tag">ZMOD4410AI1V</span>
+                        <h4>Indoor Gas Detection</h4>
+                        <p>Measures: Volatile Organic Compounds (VOCs). Indicates air pollution from paints, perfumes, and cleaning products.</p>
+                    </div>
+                    <div class="sensor-card glass-card text-left active-on-scroll fade-up" style="transition-delay: 0.2s">
+                        <span class="model-tag">ZMOD4510AI1V</span>
+                        <h4>Outdoor Pollution</h4>
+                        <p>Measures: Ozone (O₃). Key smog component causing respiratory issues, particularly in polluted zones.</p>
+                    </div>
+                    <div class="sensor-card glass-card text-left active-on-scroll fade-up" style="transition-delay: 0.3s">
+                        <span class="model-tag">HS4001</span>
+                        <h4>Climate Conditions</h4>
+                        <p>Measures: Temperature, Humidity. Impact comfort and aid precision sensor calibration.</p>
+                    </div>
+                    <div class="sensor-card glass-card text-left active-on-scroll fade-up" style="transition-delay: 0.4s">
+                        <span class="model-tag">PMSA003</span>
+                        <h4>Particulate Matter</h4>
+                        <p>Measures: PM1.0, PM2.5, PM10. Tiny inhalable particles. Used directly to calculate the official Air Quality Index (AQI).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white" id="insights">
+            <div class="container text-center max-w-700 mx-auto">
+                <span class="badge">Measurement Parameters</span>
+                <h2>7 Key Parameters</h2>
+                <p>BreathClean doesn’t just show numbers — it shifts the focus to meaningful intelligence.</p>
+                <div class="param-tags mt-4 active-on-scroll fade-up">
+                    <span class="p-tag">PM1.0</span> <span class="p-tag">PM2.5</span> <span class="p-tag">PM10</span>
+                    <span class="p-tag">Temperature</span> <span class="p-tag">Humidity</span>
+                    <span class="p-tag">VOC levels</span> <span class="p-tag">Ozone levels</span>
+                </div>
+                <div class="aqi-box mt-4 bg-light active-on-scroll fade-up">
+                    <strong>➕ Derived Value: Air Quality Index (AQI)</strong>
+                    <p class="sub-text">A simplified indicator of overall air quality based mainly on particulate matter levels.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-light shadow-top-bottom" id="app">
+            <div class="container app-grid align-center gap-60">
+                <div class="visual-box text-center active-on-scroll fade-left">
+                    <img src="assets/AppScreen.png" alt="BreathClean App UI" class="app-mockup shadow-img">
+                </div>
+                <div class="text-left active-on-scroll fade-right">
+                    <span class="badge">User Interface</span>
+                    <h2>Intelligent Air Guardian <br>in <span>Your Pocket</span></h2>
+                    <p>The companion app transforms complex environmental data into meaningful health intelligence, designed for step-by-step user understanding.</p>
+                    
+                    <div class="app-info-grid mt-5">
+                        <div class="app-info-card active-on-scroll fade-up">
+                            <h4>Real-Time Monitoring</h4>
+                            <ul class="clean-list">
+                                <li>Displays AQI (Air Quality Index) clearly</li>
+                                <li>Shows all key parameters live</li>
+                                <li>Uses color indicators (Good / Moderate / Poor)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="app-info-card active-on-scroll fade-up">
+                            <h4>Parameters Tracked</h4>
+                            <ul class="clean-list parameters-tracked">
+                                <li><strong>PM1.0, PM2.5, PM10</strong></li>
+                                <li><strong>Temperature</strong></li>
+                                <li><strong>Humidity</strong></li>
+                                <li><strong>VOC levels</strong></li>
+                                <li><strong>Ozone</strong></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="app-info-card active-on-scroll fade-up">
+                            <h4>Trends & History</h4>
+                            <ul class="clean-list">
+                                <li>Tracks data over time</li>
+                                <li>Shows daily and weekly patterns</li>
+                                <li>Calculates personalized health score</li>
+                                <li>Calculates breathable air percentage</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="app-info-card active-on-scroll fade-up">
+                            <h4>Smart Alerts</h4>
+                            <ul class="clean-list">
+                                <li>Notifies when air quality becomes poor</li>
+                                <li>Helps users take action quickly</li>
+                                <li>Delivers actionable respiratory advice</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dark-theme" id="use-cases">
+            <div class="container text-center mb-5 active-on-scroll fade-up">
+                <span class="badge dark-badge">EVERYWHERE</span>
+                <h2>Suitable For Multiple Environments</h2>
+                <p class="light-text">Maintain awareness of air quality in everyday life.</p>
+            </div>
+            <div class="container grid-4 use-case-grid">
+                <div class="uc-card glass-card text-left active-on-scroll fade-left">
+                    <h4>Homes</h4>
+                    <p>Bedroom, living area, kitchen air monitoring.</p>
+                </div>
+                <div class="uc-card glass-card text-left active-on-scroll fade-left">
+                    <h4>Offices</h4>
+                    <p>Track workplace air quality to boost productivity.</p>
+                </div>
+                <div class="uc-card glass-card text-left active-on-scroll fade-right">
+                    <h4>Study Areas</h4>
+                    <p>Ensuring cognitive wellness through optimal air balance.</p>
+                </div>
+                <div class="uc-card glass-card text-left active-on-scroll fade-right">
+                    <h4>Travel</h4>
+                    <p>Portable monitoring on-the-go (hotel rooms, vehicles).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white" id="flow">
+            <div class="container text-center max-w-700 mx-auto active-on-scroll fade-up">
+                <span class="badge">Seamless Loop</span>
+                <h2>System Flow</h2>
+                <p>Environment → Sensors → Data Processing → User Interface</p>
+                <div class="flow-container grid-4 text-center mt-5 active-on-scroll fade-up">
+                    <div class="flow-step">1. Environment</div>
+                    <div class="flow-connector">→</div>
+                    <div class="flow-step">2. Collection (Device)</div>
+                    <div class="flow-connector">→</div>
+                    <div class="flow-step">3. Processing</div>
+                    <div class="flow-connector">→</div>
+                    <div class="flow-step">4. Visuals (App)</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feedback-section bg-light shadow-top-bottom" id="feedback">
+            <div class="container text-center max-w-700 mx-auto active-on-scroll fade-up">
+                <span class="badge">Community Voice</span>
+                <h2>GIVE US YOUR FEEDBACK</h2>
+                <p class="mb-5 section-subtitle">Share opinions, rate the device, and suggest improvements. We really appreciate your time and help in making BreathClean better.</p>
+                
+                <div class="form-wrapper shadow-img">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScc_OVoEqnEN9tdSqK7XJZ8o5fwnvC9OPevzWHXYCe1sELPUw/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="footer dark-theme">
+        <div class="container footer-grid align-center">
+            <div class="footer-brand active-on-scroll fade-left">
+                <div class="logo light-logo">
+                    <img src="assets/logo.png" alt="BreathClean Logo">
+                    <span>BreathClean</span>
+                </div>
+                <p class="light-text mt-3">Know the air you breathe — anywhere, anytime.</p>
+            </div>
+            <div class="footer-contact text-left active-on-scroll fade-right">
+                <h4 class="text-white">Contact Us</h4>
+                <div class="contact-card mt-3 glass-card">
+                    <strong> Email:</strong> silvershader3122003@gmail.com
+                </div>
+                <div class="contact-card mt-2 glass-card">
+                    <strong> Mobile:</strong> +91 97307 88232
+                </div>
+            </div>
+        </div>
+        
+        <div class="container footer-bottom text-center mt-5">
+            <p>© 2026 BreathClean. MiniBreath™ — Intelligence in Air Quality.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
