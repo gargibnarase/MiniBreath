@@ -13,7 +13,8 @@
 /* Base resets & typography */
 * {
     margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Outfit', sans-serif;
+    /* FIX: Force Outfit font to block Chrome default overrides */
+    font-family: 'Outfit', sans-serif !important;
     scroll-behavior: smooth;
 }
 
@@ -22,6 +23,14 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
+}
+
+/* FIX: Image containment to prevent any distortion */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
 }
 
 /* Background canvas setup */
@@ -72,17 +81,13 @@ h2 { font-size: 2.8rem; margin-bottom: 15px; text-transform: capitalize; }
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 1.4rem; color: var(--primary-dark); }
 .logo img { height: 35px; }
 
-/* Desktop links centered in the navbar */
 .nav-links { display: flex; align-items: center; gap: 40px; position: absolute; left: 50%; transform: translateX(-50%); }
 .nav-links a { text-decoration: none; color: var(--primary-dark); font-weight: 600; font-size: 0.95rem; transition: color 0.3s; position: relative; }
 .nav-links a:hover { color: var(--primary-emerald); }
 .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--primary-emerald); transition: width 0.3s; }
 .nav-links a:hover::after { width: 100%; }
 
-/* mobile btn within nav-links drawer */
 .nav-links .mobile-btn { display: none; margin-top: 20px; width: 100%; text-align: center;}
-
-/* mobile actions (burger) and desktop btn on the right */
 .nav-actions { display: flex; align-items: center; gap: 15px; }
 
 .mobile-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; z-index: 1001; }
@@ -113,55 +118,36 @@ h2 { font-size: 2.8rem; margin-bottom: 15px; text-transform: capitalize; }
 section { padding: 100px 0; }
 .hero { 
     min-height: 90vh; display: flex; align-items: center; padding-top: 130px; 
-    /* NEW: Very light green gradient for the landing page */
     background: linear-gradient(180deg, rgba(16, 185, 129, 0.04) 0%, var(--white) 100%);
 }
-.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+
+/* FIX: Added align-items center to strictly prevent vertical desktop image stretching */
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .hero-visual { width: 100%; display: flex; justify-content: center; }
+/* Max width for desktop is contained properly */
+.main-img { width: 100%; max-width: 450px; display: block; margin: 0 auto; object-fit: contain;}
 .shadow-top-bottom { box-shadow: 0 -10px 40px rgba(0,0,0,0.02), 0 10px 40px rgba(0,0,0,0.02); }
 
-/* Check List utils */
-.check-list { list-style: none; }
-.check-list li { margin-bottom: 12px; font-weight: 500; }
-
-/* Grid 4 Utils */
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .sensor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 
 /* LIGHT GREEN SHADOWY BG FOR DEVICE VISUALS */
-/* Hero Visual container glow */
 .device-visual { position: relative; }
 .device-visual::after {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%; height: 60%;
-    background-color: var(--primary-emerald);
-    border-radius: 50%;
-    filter: blur(80px); /* Creates the light green shadowy aura */
-    opacity: 0.15;
-    z-index: -1;
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); width: 60%; height: 60%;
+    background-color: var(--primary-emerald); border-radius: 50%;
+    filter: blur(80px); opacity: 0.15; z-index: -1;
 }
 
-/* Solution section small visual glow */
-.device-visual-small {
-    position: relative; width: 100%; display: flex; justify-content: center;
-}
+.device-visual-small { position: relative; width: 100%; display: flex; justify-content: center; }
 .device-visual-small::after {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%; height: 70%;
-    background-color: var(--primary-emerald);
-    border-radius: 50%;
-    filter: blur(50px);
-    opacity: 0.12;
-    z-index: -1;
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); width: 70%; height: 70%;
+    background-color: var(--primary-emerald); border-radius: 50%;
+    filter: blur(50px); opacity: 0.12; z-index: -1;
 }
 .device-visual-small img { max-width: 300px; width: 100%;}
-.hero-visual img { width: 100%; max-width: 500px;}
 
 /* Animations */
 .active-on-scroll { opacity: 0; transition: all 0.8s ease; }
@@ -172,16 +158,13 @@ section { padding: 100px 0; }
 .device-float { animation: float 6s ease-in-out infinite; }
 @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
-/* Advanced Card styling (Hover animations) */
+/* Cards */
 .glass-card { 
     background: var(--card-light); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.4); padding: 30px; border-radius: 20px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .dark-theme .glass-card { background: var(--card-dark); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
-
-/* Sophisticated glowing hover effect */
 .glass-section .sensor-card::after {
     content: ''; position: absolute; inset: -1px; 
     background: linear-gradient(135deg, transparent 40%, rgba(16,185,129,0.2), transparent 60%);
@@ -208,7 +191,6 @@ section { padding: 100px 0; }
 .app-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; }
 .app-mockup { border-radius: 30px; border: 8px solid #FFF; width: auto; max-width: 300px;}
 .app-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
 .app-info-card { 
     background: rgba(16,185,129,0.02); padding: 25px; border-radius: 15px; 
     border: 1px solid rgba(16,185,129,0.1); transition: 0.3s;
@@ -222,17 +204,25 @@ section { padding: 100px 0; }
 .app-info-card ul li strong { color: var(--primary-dark); font-weight: 600;} 
 .parameters-tracked { display: grid; grid-template-columns: 1fr 1fr; }
 
-/* Use Cases */
-.use-case-grid .uc-card { background: #0A271D; border: 1px solid rgba(255,255,255,0.05); border-radius: 15px; padding: 25px; min-height: 180px; }
-.use-case-grid .uc-card h4 { color: #FFF; margin-bottom: 10px; }
-.use-case-grid .uc-card p { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
+/* Interactive Flow (Simplified and Clean text-only) */
+.system-flow-interactive { width: 100%; padding: 20px 0; max-width: 1000px; margin: 0 auto; overflow-x: auto; }
+.flow-interactive-wrapper { display: flex; justify-content: center; align-items: center; width: 100%; flex-wrap: nowrap; min-width: 800px; position: relative;}
 
-/* Flow */
-.flow-container { gap: 10px; }
-.flow-step { padding: 20px; background: white; border-radius: 10px; color: var(--primary-dark); font-weight: 600; font-size: 0.9rem; flex: 1; border: 1px solid rgba(16,185,129,0.1); }
-.flow-connector { color: var(--primary-emerald); font-size: 1.5rem; font-weight:bold; }
+.flow-stage { 
+    background: #FFF; border: 2px solid rgba(16,185,129,0.1); border-radius: 15px; 
+    padding: 25px 20px; text-align: center; flex: 1; min-width: 160px; max-width: 220px;
+    z-index: 2; box-shadow: 0 5px 15px rgba(0,0,0,0.03); transition: all 0.3s;
+    display: flex; flex-direction: column; justify-content: center;
+}
+.flow-label { font-weight: 700; color: var(--primary-dark); font-size: 1.2rem; margin-bottom: 8px;}
+.flow-description { font-size: 0.9rem; color: var(--text-light); line-height: 1.4;}
+.flow-connector { color: rgba(16,185,129,0.2); font-size: 2.5rem; font-weight: bold; padding: 0 15px; }
 
-/* Form wrapper */
+/* Interaction Flow Animation */
+.flow-stage.current { border-color: var(--primary-emerald); box-shadow: 0 15px 40px rgba(16,185,129,0.1); }
+.flow-stage.current + .flow-connector { color: var(--primary-emerald); animation: pushArrow 2s infinite; }
+@keyframes pushArrow { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+
 .form-wrapper { background: white; border-radius: 20px; overflow: hidden; }
 
 /* Footer */
@@ -243,11 +233,33 @@ section { padding: 100px 0; }
 .contact-card { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); }
 .footer-bottom { text-align: center; padding-top: 30px; color: rgba(255,255,255,0.4); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); }
 
-/* Responsive Adjustments */
+/* =========================================
+   NEW AI & SPECS SECTION ADDITIONS
+   ========================================= */
+.text-light-dark { color: #4B5563; font-size: 0.95rem; }
+.italic-list li { font-style: italic; font-weight: 500; color: var(--primary-dark) !important; }
+.compact-tags { justify-content: flex-start; }
+.compact-tags .p-tag { font-size: 0.8rem; padding: 4px 10px; margin: 3px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+.led-layer-list { border-left: 2px solid rgba(255,255,255,0.1); padding-left: 20px; }
+.led-layer h4 { color: white; font-size: 1.1rem; margin-bottom: 5px; }
+.led-layer p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+.led-colors { display: flex; align-items: center; flex-wrap: wrap; font-size: 0.8rem; color: rgba(255,255,255,0.8); }
+
+.spec-table-wrapper { background: #FFF; border: 1px solid rgba(0,0,0,0.05); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); overflow: hidden; }
+.spec-row { display: flex; justify-content: space-between; padding: 15px 20px; border-bottom: 1px solid rgba(0,0,0,0.05); align-items: center;}
+.spec-row:last-child { border-bottom: none; }
+.spec-row:nth-child(even) { background-color: rgba(16, 185, 129, 0.02); }
+.spec-label { font-weight: 700; color: var(--primary-dark); font-size: 0.95rem; flex: 1;}
+.spec-value { color: var(--text-light); font-size: 0.95rem; text-align: right; flex: 2;}
+
+/* =========================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================= */
 @media (max-width: 1024px) {
-    h1 { font-size: 3.5rem; }
-    h2 { font-size: 2.4rem; }
-    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    h1 { font-size: 3.5rem; } h2 { font-size: 2.4rem; }
+    .grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); }
     .app-grid { grid-template-columns: 1fr; }
     .hero-grid { grid-template-columns: 1fr; text-align: center; }
     .hero-visual, .device-visual-small { order: 1; margin-top: 40px;}
@@ -255,11 +267,9 @@ section { padding: 100px 0; }
 }
 
 @media (max-width: 768px) {
-    /* Navbar Mobile corrections */
     .desktop-btn { display: none; }
     .mobile-toggle { display: flex; }
     
-    /* Navegation bar opens only half (60%) but shows complete buttons */
     .nav-links { 
         display: flex; position: fixed; top: 0; right: -100%; width: 60%; height: 100vh; 
         background: rgba(255,255,255,0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -272,14 +282,17 @@ section { padding: 100px 0; }
     .nav-links a { font-size: 1.1rem; border-bottom: 1px solid rgba(0,0,0,0.05); width: 100%; padding-bottom: 10px;}
     .nav-links .mobile-btn { display: block; width: 100%;}
     
-    .grid-4, .sensor-grid, .footer-grid, .app-info-grid { grid-template-columns: 1fr; }
+    .grid-4, .grid-3, .sensor-grid, .footer-grid, .app-info-grid { grid-template-columns: 1fr; }
     h1 { font-size: 2.8rem; }
     section { padding: 60px 0; }
     .app-mockup { max-width: 250px; }
     
-    /* flow mobile stacking */
-    .flow-container { flex-direction: column; gap: 5px; }
-    .flow-connector { transform: rotate(90deg); margin: 5px 0; }
-    .pcb-showcase { grid-template-columns: 1fr; }
+    .flow-interactive-wrapper { flex-direction: column; gap: 5px; min-width: 100%; }
+    .flow-connector { transform: rotate(90deg); margin: 5px 0; padding: 10px 0;}
+    .flow-stage { width: 100%; max-width: 300px; }
+    
+    .spec-row { flex-direction: column; align-items: flex-start; text-align: left; gap: 5px;}
+    .spec-value { text-align: left; }
+    .led-layer-list { border-left: none; padding-left: 0; }
     .contact-card { font-size: 0.9rem; }
 }
